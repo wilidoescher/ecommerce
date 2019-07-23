@@ -5,6 +5,7 @@ namespace Hcode\DB;
 class Sql {
 
 	const HOSTNAME = "127.0.0.1";
+	//const NAMEHOST = "localhost";
 	const USERNAME = "root";
 	const PASSWORD = "";
 	const DBNAME = "db_ecommerce";
@@ -16,6 +17,7 @@ class Sql {
 
 		$this->conn = new \PDO(
 			"mysql:dbname=".Sql::DBNAME.";host=".Sql::HOSTNAME, 
+			//Sql::NAMEHOST,
 			Sql::USERNAME,
 			Sql::PASSWORD
 		);
