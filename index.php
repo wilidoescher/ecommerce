@@ -3,9 +3,10 @@ session_start();
 	require_once("vendor/autoload.php");
 
 	use \Slim\Slim;
-	use  \Hcode\Page;
-	use  \Hcode\PageAdmin;
-	use  \Hcode\Model\User;
+	use \Hcode\Page;
+	use \Hcode\PageAdmin;
+	use \Hcode\Model\User;
+	use \Hcode\Model\Category;
 
 	$app = new Slim();
 
@@ -225,6 +226,20 @@ session_start();
 		]);
 
 		$page->setTpl("forgot-reset-sucess");
+
+	});
+
+	$app->get("/admin/categories", function(){
+
+		$categories = Category::listAll();
+
+		$user->setPassword($password);
+
+		$page = new PageAdmin();
+
+		$page->setTpl("categories", [
+			'categories'=>$categories
+		]);
 
 	});
 	

@@ -3,12 +3,15 @@ namespace Hcode\Model;
 use \Hcode\Db\Sql;
 use \Hcode\Model;
 use \Hcode\Mailer;
+
 class User extends Model {
+
 	const SESSION = "User";
 	const SECRET = "HcodePhp7_Secret";
 	const ERROR = "UserError";
 	const ERROR_REGISTER = "UserErrorRegister";
 	const SUCCESS = "UserSuccess";
+
 	public static function getFromSession()
 	{
 		$user = new User();
@@ -152,8 +155,7 @@ class User extends Model {
 	{
     $sql = new Sql();
     $results = $sql->select("
-         SELECT *
-         FROM tb_persons a
+         SELECT * FROM tb_persons a
          INNER JOIN tb_users b USING(idperson)
          WHERE a.desemail = :email;
      ", array(
@@ -208,7 +210,7 @@ class User extends Model {
 		$sql = new Sql();
 
 		$sql->select("
-			SELECT 8 FROM tb_userspasswordrecoveries a INNER JOIN tb_users b USING(iduser)
+			SELECT * FROM tb_userspasswordrecoveries a INNER JOIN tb_users b USING(iduser)
 			INNER JOIN tb_persons c USING(idperson) WHERE
 			a.idrecovery = :idrecovery
 			AND
