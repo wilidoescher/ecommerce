@@ -17,19 +17,19 @@ class Product extends Model {
 	{
 
 		$sql = new Sql();
-		
-		$results = $sql->select("CALL sp_products_save(:idproduct, :desproduct, :vlprice, :vlwidth, :vlheight, :vllenght, :vlweight, :desurl)", array(
-			":idproduct"=>$this->getidproduct(),
-			":desproduct"=>$this->getdesproduct(),
-			":vlprice"=>$this->getvlprice(),
-			":vlwidth"=>$this->getvlwidth(),
-			":vlheight"=>$this->getvlheight(),
-			":vllenght"=>$this->getvllenght(),
-			":vlweight"=>$this->getvlweight(),
-			":desurl"=>$this->getdesurl()
+
+		$results = $sql->select("CALL sp_products_save(:pidproduct, :pdesproduct, :pvlprice, :pvlwidth, :pvlheight, :pvllength, :pvlweight, :pdesurl)", array(
+			":pidproduct"=>$this->getidproduct(),
+			":pdesproduct"=>$this->getdesproduct(),
+			":pvlprice"=>$this->getvlprice(),
+			":pvlwidth"=>$this->getvlwidth(),
+			":pvlheight"=>$this->getvlheight(),
+			":pvllength"=>$this->getvllength(),
+			":pvlweight"=>$this->getvlweight(),
+			":pdesurl"=>$this->getdesurl()
 		));
 		
-		//$this->setData($results[0]);
+		$this->setData($results[0]);
 
 	}
 
@@ -86,13 +86,13 @@ class Product extends Model {
 
 		$this->checkPhoto();
 
-		$values = arent::getValues();
+		$values = parent::getValues();
 
 		return $values;
 
 	}
 
-	public function setPhoto()
+	public function setPhoto($file)
 	{
 
 		$extension = explode('.', $file['name']);

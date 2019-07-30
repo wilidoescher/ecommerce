@@ -2,7 +2,7 @@
 
 use \Hcode\PageAdmin;
 use \Hcode\Model\User;
-use \Hcode\Model\Product;
+use \Hcode\Model\Category;
 
 $app->get("/admin/categories", function(){
 
@@ -84,9 +84,11 @@ $app->get("/admin/categories", function(){
 
 		$category->get((int)$idcategory);
 
+
+
 		$category->setData($_POST);
 
-		$category->save();
+		$category->update();
 
 		header('Location: /admin/categories');
 		exit;

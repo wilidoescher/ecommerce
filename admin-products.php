@@ -38,11 +38,12 @@ $app->post("/admin/products/create", function(){
 
 	$product->save();
 
-	header("Location: /admin/products");
+	header('Location: /admin/products');
+		exit;
 
 });
 
-$app->get("/admin/products/:idproduct", function(){
+$app->get("/admin/products/:idproduct", function($idproduct){
 
 	User::verifyLogin();
 
@@ -58,7 +59,7 @@ $app->get("/admin/products/:idproduct", function(){
 
 });
 
-$app->post("/admin/products/:idproduct", function(){
+$app->post("/admin/products/:idproduct", function($idproduct){
 
 	User::verifyLogin();
 
@@ -66,18 +67,21 @@ $app->post("/admin/products/:idproduct", function(){
 
 	$product->get((int)$idproduct);
 
-	$prduct->setData($_POST);
+	$product->setData($_POST);
 
 	$product->save();
 
-	$prodct->setPhoto($_FILES["file"]);
+	var_dump($_FILES["file"]);die;
+
+	$product->setPhoto($_FILES["file"]);
 
 	header('Location: /admin/products');
 	exit;
 
 });
 
-$app->get("/admin/products/:idproduct/delete", function(){
+
+$app->get("/admin/products/:idproduct/delete", function($idproduct){
 
 	User::verifyLogin();
 
@@ -85,7 +89,7 @@ $app->get("/admin/products/:idproduct/delete", function(){
 
 	$product->get((int)$idproduct);
 
-	$prduct->delete();
+	$product->delete();
 
 	header('Location: /admin/products');
 	exit;
