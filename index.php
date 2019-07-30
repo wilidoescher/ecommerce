@@ -329,7 +329,8 @@ session_start();
 		$page = new Page();
 
 		$page->setTpl("category", [
-			'category'=>$category->getValues()
+			'category'=>$category->getValues(),
+			'products'=>[]
 		]);
 
 	});
